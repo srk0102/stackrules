@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-stackrules",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "ESLint plugin that enforces clean architecture in AI-generated codebases. Works on top of ESLint — catches spaghetti patterns, gives AI-quality refactoring guidance.",
   "main": "src/index.js",
   "files": [
@@ -29,7 +29,7 @@
   "author": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/srk0102/stackrules.git"
+    "url": "git+https://github.com/srk0102/stackrules.git"
   },
   "homepage": "https://github.com/srk0102/stackrules",
   "bugs": {
