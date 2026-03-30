@@ -25,9 +25,9 @@
   "author": "",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/srk0102/stackrules.git"
   },
-  "homepage": "",
+  "homepage": "https://github.com/srk0102/stackrules",
   "license": "MIT",
   "dependencies": {
     "commander": "^12.0.0",

@@ -29,11 +29,11 @@
   "author": "",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/srk0102/stackrules.git"
   },
-  "homepage": "",
+  "homepage": "https://github.com/srk0102/stackrules",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/srk0102/stackrules/issues"
   },
   "peerDependencies": {
     "eslint": ">=8.0.0"
