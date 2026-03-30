@@ -5,17 +5,17 @@ on:
     branches: [master]
 
 permissions:
-  id-token: write
   contents: read
+  id-token: write
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 22
       - run: npm install
         working-directory: packages/eslint-plugin-stackrules
       - run: npm test
@@ -25,10 +25,10 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 22
           registry-url: https://registry.npmjs.org
       - name: Check if version changed
         id: check
@@ -44,17 +44,17 @@ jobs:
         working-directory: packages/eslint-plugin-stackrules
       - name: Publish
         if: steps.check.outputs.skip == 'false'
-        run: npm publish
+        run: npm publish --provenance --access public
         working-directory: packages/eslint-plugin-stackrules
 
   publish-cli:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 22
           registry-url: https://registry.npmjs.org
       - name: Check if version changed
         id: check
@@ -70,5 +70,5 @@ jobs:
         working-directory: packages/cli
       - name: Publish
         if: steps.check.outputs.skip == 'false'
-        run: npm publish
+        run: npm publish --provenance --access public
         working-directory: packages/cli
