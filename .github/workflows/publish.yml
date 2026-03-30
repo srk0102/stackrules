@@ -1,8 +1,8 @@
-name: Publish to npm
+name: Test & Publish
 
 on:
-  release:
-    types: [created]
+  push:
+    branches: [master]
 
 jobs:
   test:
@@ -17,8 +17,6 @@ jobs:
       - run: npm test
         working-directory: packages/eslint-plugin-stackrules
 
-  # Publishes eslint-plugin-stackrules
-  # Triggers on any release tag: v0.1.0, v0.2.0, plugin-v1.0.0, etc.
   publish-plugin:
     needs: test
     runs-on: ubuntu-latest
@@ -31,23 +29,23 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-      - name: Check if plugin version changed
-        id: check-plugin
+      - name: Check if version changed
+        id: check
         run: |
           PUBLISHED=$(npm view eslint-plugin-stackrules version 2>/dev/null || echo "0.0.0")
           CURRENT=$(node -p "require('./package.json').version")
+          echo "published=$PUBLISHED current=$CURRENT"
           if [ "$PUBLISHED" = "$CURRENT" ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
           else
             echo "skip=false" >> $GITHUB_OUTPUT
           fi
         working-directory: packages/eslint-plugin-stackrules
-      - name: Publish plugin
-        if: steps.check-plugin.outputs.skip == 'false'
+      - name: Publish
+        if: steps.check.outputs.skip == 'false'
         run: npm publish --provenance --access public
         working-directory: packages/eslint-plugin-stackrules
 
-  # Publishes create-stackrules CLI
   publish-cli:
     needs: test
     runs-on: ubuntu-latest
@@ -60,18 +58,19 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-      - name: Check if CLI version changed
-        id: check-cli
+      - name: Check if version changed
+        id: check
         run: |
           PUBLISHED=$(npm view create-stackrules version 2>/dev/null || echo "0.0.0")
           CURRENT=$(node -p "require('./package.json').version")
+          echo "published=$PUBLISHED current=$CURRENT"
           if [ "$PUBLISHED" = "$CURRENT" ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
           else
             echo "skip=false" >> $GITHUB_OUTPUT
           fi
         working-directory: packages/cli
-      - name: Publish CLI
-        if: steps.check-cli.outputs.skip == 'false'
+      - name: Publish
+        if: steps.check.outputs.skip == 'false'
         run: npm publish --provenance --access public
         working-directory: packages/cli
