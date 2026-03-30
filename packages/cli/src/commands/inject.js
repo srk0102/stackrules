@@ -87,14 +87,37 @@ async function injectCommand(options) {
     );
   }
 
-  // ── 2. Install the npm package ────────────────────
-  console.log(chalk.gray("\n  Installing eslint-plugin-stackrules...\n"));
+  // ── 2. Install eslint + plugin + stack-specific deps ─
+  const depsToInstall = ["eslint", "eslint-plugin-stackrules"];
+
+  // Detect what the existing config needs
+  const configFiles = [
+    "eslint.config.mjs", "eslint.config.js", "eslint.config.cjs",
+    ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json",
+    ".eslintrc.yml", ".eslintrc.yaml", ".eslintrc",
+  ];
+  for (const c of configFiles) {
+    const cfgPath = path.join(targetDir, c);
+    if (await fs.pathExists(cfgPath)) {
+      const cfgContent = await fs.readFile(cfgPath, "utf-8");
+      if (cfgContent.includes("eslint-config-next")) depsToInstall.push("eslint-config-next");
+      if (cfgContent.includes("@typescript-eslint")) depsToInstall.push("@typescript-eslint/eslint-plugin", "@typescript-eslint/parser");
+      break;
+    }
+  }
+
+  // Also detect from stack
+  if (stack.includes("nextjs") && !depsToInstall.includes("eslint-config-next")) {
+    depsToInstall.push("eslint-config-next");
+  }
+
+  console.log(chalk.gray("\n  Installing dependencies...\n"));
   try {
-    execSync("npm install --save-dev eslint-plugin-stackrules", {
+    execSync(`npm install --save-dev ${depsToInstall.join(" ")}`, {
       cwd: targetDir,
       stdio: "pipe",
     });
-    console.log(chalk.green("  ✓") + " Installed eslint-plugin-stackrules");
+    console.log(chalk.green("  ✓") + ` Installed ${depsToInstall.join(", ")}`);
   } catch {
     // If npm registry install fails, try local path (for development)
     try {

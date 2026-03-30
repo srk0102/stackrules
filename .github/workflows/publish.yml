@@ -20,6 +20,7 @@ jobs:
   publish-plugin:
     needs: test
     runs-on: ubuntu-latest
+    environment: npm
     permissions:
       contents: read
       id-token: write
@@ -49,6 +50,7 @@ jobs:
   publish-cli:
     needs: test
     runs-on: ubuntu-latest
+    environment: npm
     permissions:
       contents: read
       id-token: write

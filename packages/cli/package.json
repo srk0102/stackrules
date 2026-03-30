@@ -1,6 +1,6 @@
 {
   "name": "create-stackrules",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "One command to enforce clean architecture in any codebase. Detects your stack, patches ESLint, finds every violation.",
   "main": "src/index.js",
   "bin": {
