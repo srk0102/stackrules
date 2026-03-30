@@ -31,8 +31,6 @@ jobs:
           registry-url: https://registry.npmjs.org
       - run: npm publish --provenance --access public
         working-directory: packages/eslint-plugin-stackrules
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-cli:
     needs: test
@@ -48,5 +46,3 @@ jobs:
           registry-url: https://registry.npmjs.org
       - run: npm publish --provenance --access public
         working-directory: packages/cli
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
