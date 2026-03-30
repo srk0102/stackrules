@@ -1,0 +1,45 @@
+{
+  "name": "eslint-plugin-stackrules",
+  "version": "0.1.0",
+  "description": "ESLint plugin that enforces clean architecture in AI-generated codebases. Works on top of ESLint — catches spaghetti patterns, gives AI-quality refactoring guidance.",
+  "main": "src/index.js",
+  "files": [
+    "src/**/*.js",
+    "!src/**/*.test.js"
+  ],
+  "scripts": {
+    "test": "node --test src/**/*.test.js"
+  },
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
+    "architecture",
+    "stackrules",
+    "vibe-coding",
+    "ai-generated-code",
+    "supabase",
+    "stripe",
+    "nextjs",
+    "react",
+    "services",
+    "clean-architecture",
+    "code-quality"
+  ],
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "homepage": "",
+  "bugs": {
+    "url": ""
+  },
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^10.1.0"
+  },
+  "license": "MIT"
+}

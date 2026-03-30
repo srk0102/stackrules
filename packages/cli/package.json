@@ -1,0 +1,38 @@
+{
+  "name": "create-stackrules",
+  "version": "0.1.0",
+  "description": "One command to enforce clean architecture in any codebase. Detects your stack, patches ESLint, finds every violation.",
+  "main": "src/index.js",
+  "bin": {
+    "create-stackrules": "src/index.js"
+  },
+  "files": [
+    "src/**/*.js"
+  ],
+  "scripts": {
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": [
+    "stackrules",
+    "eslint",
+    "architecture",
+    "vibe-coding",
+    "ai-generated-code",
+    "cli",
+    "scaffold",
+    "clean-architecture"
+  ],
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "homepage": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.0.0",
+    "chalk": "^4.1.2",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.0"
+  }
+}

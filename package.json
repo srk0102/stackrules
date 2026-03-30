@@ -1,0 +1,15 @@
+{
+  "name": "stackrules",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Architecture rules for vibe coders and AI agents building full stack applications",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "eslint ."
+  },
+  "license": "MIT"
+}
